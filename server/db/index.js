@@ -1,14 +1,18 @@
-const path = require("path");
-const express = require("express");
-const PORT = 3000;
+const { Client } = require('pg');
 
-const app = express();
-
-app.use(express.static(path.join(__dirname, "/dist")));
-app.get('/', (req, res) => {
-  res.send('hello from the server!');
-})
-
-app.listen(3000, () => {
-  console.log('Server is listening');
+const client = new Client({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'flashcards',
+  port: '5432'
 });
+
+client.connect((err) => {
+  if (err) {
+    console.log('Error in connecting to the database: ', err);
+  } else {
+    console.log('Successfully connected to the database');
+  }
+});
+
+module.exports = client;

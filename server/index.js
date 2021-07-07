@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const client = require('./db/index');
 
 const PORT = 3000;
 
