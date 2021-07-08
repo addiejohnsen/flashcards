@@ -12,6 +12,18 @@ const getDecks = (callback) => {
   });
 };
 
+// get decks from the datbase based on need_practice = true
+const getDecksNeedPractice = (callback) => {
+  const queryString = `SELECT * FROM decks WHERE deck_practice_needed = 't';`;
+  client.query(queryString, [deck_id], (err, result) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, result)
+    }
+  });
+}
+
 // get cards from the database based on deck_id number
 const getCards = (deck_id, callback) => {
   const queryString = 'SELECT * FROM cards WHERE deck_id=$1;';
@@ -23,6 +35,31 @@ const getCards = (deck_id, callback) => {
     }
   });
 }
+
+
+// get cards from the datbase based on deck_id number where need to study = true
+const getCardsNeedPractice = (deck_id, callback) => {
+  const queryString = `SELECT * FROM cards WHERE deck_id=$1 AND card_practice_needed = 't';`;
+  client.query(queryString, [deck_id], (err, result) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, result)
+    }
+  });
+}
+
+// get all cards from all decks
+const getAllCards = (callback) => {
+  const queryString = 'SELECT * FROM cards;';
+  client.query(queryString, (err, result) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callbak(null, err);
+    }
+  });
+};
 
 // create new deck
 const createDeck = (deck_name, callback) => {
@@ -61,9 +98,14 @@ const createCard = (card, callback) => {
 };
 
 
+
+
 module.exports = {
   getDecks,
   getCards,
+  getAllCards,
+  getCardsNeedPractice,
+  getDecksNeedPractice,
   createDeck,
   createCard
 }
