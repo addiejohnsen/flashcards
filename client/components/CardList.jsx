@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CardItem from './CardItem';
+import DeckList from './DeckList';
 
 const axios = require('axios');
 
@@ -19,12 +20,23 @@ const CardList = (props) => {
       });
   };
 
+  // useEffect(() => {
+  //   fetchCards(props.currentDeck.id);
+  // }, []);
+
   useEffect(() => {
     fetchCards(props.currentDeck.id);
   }, [props.currentDeck.id]);
 
   return (
-    <CardItem cards={cards} />
+    <React.Fragment>
+      <DeckList cards={cards} currentDeck={props.currentDeck}/>
+      {cards.map((card, index) => {
+        return (
+          <CardItem card={card} key={index} />
+        )
+      })}
+    </React.Fragment>
   );
 };
 

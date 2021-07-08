@@ -23,18 +23,18 @@ const useStyles = makeStyles({
 
 const CardItem = (props) => {
   const classes = useStyles();
+  const [flipped, setFlipped] = useState(false);
 
-  const flip = (e) => {
-    console.log('clicked');
+  const flip = () => {
+    setFlipped(!flipped);
   };
 
   return (
     <div>
-      <h2>Наши карточки!</h2>
       <Card variant="outlined" elevation={3} className={classes.root}>
         <CardContent>
           <Typography variant="h4">
-            FRONT TEXT
+            {(!flipped ? props.card.front : props.card.back)}
           </Typography>
           <RedoIcon onClick={flip} fontSize="large" style={{ color: 'MediumAquaMarine' }} />
         </CardContent>

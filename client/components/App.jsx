@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 // import { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CreateDeck from './CreateDeck';
-import DeckList from './DeckList';
 import CardList from './CardList';
 import Navigation from './Navigation';
 
@@ -48,7 +47,6 @@ const App = () => {
       <Navigation allDecks={allDecks} clickDeck={clickDeck} />
       <div className={classes.root}>
         <CreateDeck />
-        <DeckList allDecks={allDecks} />
         <CardList currentDeck={currentDeck} />
       </div>
     </div>

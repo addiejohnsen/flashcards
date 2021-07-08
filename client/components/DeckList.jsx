@@ -1,10 +1,37 @@
 import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles({
+  list: {
+    display: 'inline',
+  },
+});
+
 
 const DeckList = (props) => {
-  const test = 0;
+  const classes = useStyles();
+  console.log(props);
+
+  const cardNames = props.cards.map((card, index) => {
+    return (
+      <Typography variant='body2' className={classes.list}>
+        <li className={classes.list} key={index}>{card.front}, </li>
+      </Typography>
+    )
+  });
 
   return (
-    <h2>Deck List goes here</h2>
+    <React.Fragment>
+      <Typography variant="h6">
+        Let's study: {props.currentDeck.deck_name}
+      </Typography>
+      <Typography variant="body1">
+        The decks covers:
+      </Typography>
+      {cardNames}
+    </React.Fragment>
+
   );
 };
 
