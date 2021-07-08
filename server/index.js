@@ -11,7 +11,6 @@ const app = express();
 app.use(express.static(path.join(__dirname, '..', 'dist')));
 
 // ROUTES
-// GET
 // get all decks
 app.get('/decks', (req, res) => {
   models.getAllDecks((err, result) => {
@@ -78,12 +77,36 @@ app.get('/practice/cards', (req, res) => {
 
 // Add a new deck to the database
 app.post('/decks', (req, res) => {
+  // get deck name from request
 
+  models.createDeck(deck_name, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(201).send('Deck created')
+    }
+
+  });
 });
 
 // Add a card
 app.post('/cards', (req, res) => {
+  // create new card - follow this format - get card info from request
+/*card {
+  deck_id: id,
+  front: front,
+  back: back
+  card_practice_sessions: 0
+}
+*/
 
+  models.createCard(card, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(201).send('Card created')
+    }
+  });
 });
 
 app.listen(PORT, () => {

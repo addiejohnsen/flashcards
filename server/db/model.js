@@ -74,13 +74,6 @@ const createDeck = (deck_name, callback) => {
 };
 
 // create new card - follow this format
-/*card {
-  deck_id: id,
-  front: front,
-  back: back
-  card_practice_sessions: 0
-}
-*/
 const createCard = (card, callback) => {
   const queryParam = [];
   queryParam.push(card.deck_id);
