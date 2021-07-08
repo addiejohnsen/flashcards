@@ -12,7 +12,7 @@ const getDecks = (callback) => {
   });
 };
 
-// get deck from the database based on deck_id number
+// get cards from the database based on deck_id number
 const getCards = (deck_id, callback) => {
   const queryString = 'SELECT * FROM cards WHERE deck_id=$1;';
   client.query(queryString, [deck_id], (err, result) => {
@@ -24,8 +24,46 @@ const getCards = (deck_id, callback) => {
   });
 }
 
+// create new deck
+const createDeck = (deck_name, callback) => {
+  const queryString = 'INSERT INTO decks (deck_name, deck_practice_sessions) VALUES ($1, 0);';
+  client.query(queryString, [deck_name], (err, result) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, result);
+    }
+  });
+};
+
+// create new card - follow this format
+/*card {
+  deck_id: id,
+  front: front,
+  back: back
+  card_practice_sessions: 0
+}
+*/
+const createCard = (card, callback) => {
+  const queryParam = [];
+  queryParam.push(card.deck_id);
+  queryParam.push(card.front);
+  queryParam.push(card.back);
+  queryParam.push(card.card_practice_sessions);
+  const queryString = 'INSERT INTO cards (deck_id, front, back, card_practice_sessions) VALUES ($1, $2, $3, $4);';
+  client.query(queryString, queryParam, (err, result) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, result);
+    }
+  });
+};
+
 
 module.exports = {
-getDecks,
-getCards
+  getDecks,
+  getCards,
+  createDeck,
+  createCard
 }

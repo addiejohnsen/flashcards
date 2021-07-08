@@ -16,10 +16,12 @@ const useStyles = makeStyles({
 const App = () => {
   const classes = useStyles();
 
-  const url = 'http://localhost:3000/api/get';
+  // GET ALL DECKS ON LOAD
+
+  const url = 'http://localhost:3000/cards';
   axios.get(url)
     .then((results) => {
-      console.log('test')
+      console.log('results')
     })
     .catch((err) => {
       console.error('Error: ', err);
