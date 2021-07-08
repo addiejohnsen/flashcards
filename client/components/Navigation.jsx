@@ -41,13 +41,9 @@ const useStyles = makeStyles((theme) => ({
 const Navigation = (props) => {
   const classes = useStyles();
 
-  const flip = (e) => {
-    console.log('clicked');
-  }
-
   const deckItem = props.allDecks.map((deck, index) => {
     return (
-      <ListItem>{deck.deck_name}</ListItem>
+      <ListItem id={index} key={index} onClick={props.clickDeck}>{deck.deck_name}</ListItem>
 
     );
   })

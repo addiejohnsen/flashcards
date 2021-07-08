@@ -13,21 +13,20 @@ const useStyles = makeStyles({
   root: {
     background: 'MintCream',
     height: 200,
-    width: 250
+    width: 250,
   },
 
   card: {
-    alignItems: 'center'
-  }
-})
+    alignItems: 'center',
+  },
+});
 
 const CardItem = (props) => {
   const classes = useStyles();
 
   const flip = (e) => {
     console.log('clicked');
-
-  }
+  };
 
   return (
     <div>
@@ -37,7 +36,7 @@ const CardItem = (props) => {
           <Typography variant="h4">
             FRONT TEXT
           </Typography>
-          <RedoIcon onClick={flip} fontSize="large" style={{color: 'MediumAquaMarine'}} />
+          <RedoIcon onClick={flip} fontSize="large" style={{ color: 'MediumAquaMarine' }} />
         </CardContent>
       </Card>
     </div>

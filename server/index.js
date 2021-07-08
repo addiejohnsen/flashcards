@@ -1,8 +1,9 @@
 const path = require('path');
+const axios = require('axios');
 const express = require('express');
 const client = require('./db/index');
 const models = require('./db/model');
-const axios = require('axios');
+
 const PORT = 3000;
 
 const app = express();
@@ -18,7 +19,7 @@ app.get('/decks', (req, res) => {
       res.status(400).send(err);
     } else {
       console.log(result.rows);
-      res.status(200).send(result.rows)
+      res.status(200).send(result.rows);
     }
   });
 });
@@ -36,14 +37,14 @@ app.get('/cards', (req, res) => {
 });
 
 // get cards from a certain deck
-app.get('/deckcards', (req, res) => {
-  deck_id = 1;
-  models.getCards(deck_id, (err, result) => {
+app.get('/deckcards/:deck_id', (req, res) => {
+  const deckId = req.params.deck_id;
+  models.getCards(deckId, (err, result) => {
     if (err) {
       res.status(400).send(err);
     } else {
       console.log(result.rows);
-      res.status(200).send('success');
+      res.status(200).send(result.rows);
     }
   });
 });
@@ -55,15 +56,15 @@ app.get('/practice/decks', (req, res) => {
       res.status(400).send(err);
     } else {
       console.log(result.rows);
-      res.status(200).send('test')
+      res.status(200).send('test');
     }
   });
 });
 
 // get all cards that need practice
 app.get('/practice/cards', (req, res) => {
-  deck_id = 1;
-  models.getCardsNeedPractice(deck_id, (err, result) => {
+  const deckId = 1;
+  models.getCardsNeedPractice(deckId, (err, result) => {
     if (err) {
       res.status(400).send(err);
     } else {
@@ -79,13 +80,12 @@ app.get('/practice/cards', (req, res) => {
 app.post('/decks', (req, res) => {
   // get deck name from request
 
-  models.createDeck(deck_name, (err, result) => {
+  models.createDeck(deck_name, (err) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(201).send('Deck created')
+      res.status(201).send('Deck created');
     }
-
   });
 });
 
@@ -104,7 +104,7 @@ app.post('/cards', (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(201).send('Card created')
+      res.status(201).send('Card created');
     }
   });
 });
