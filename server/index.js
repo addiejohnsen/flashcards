@@ -18,7 +18,7 @@ app.get('/decks', (req, res) => {
       res.status(400).send(err);
     } else {
       console.log(result.rows);
-      res.status(200).send('test')
+      res.status(200).send(result.rows)
     }
   });
 });

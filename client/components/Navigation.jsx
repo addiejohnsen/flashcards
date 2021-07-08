@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
   },
   sideBar: {
     background: 'white',
-    width: 125,
+    width: 175,
     overflow: 'auto',
   },
 
   nav: {
-    width: 125,
+    width: 175,
     flexShrink: 0
   },
 
@@ -43,8 +43,14 @@ const Navigation = (props) => {
 
   const flip = (e) => {
     console.log('clicked');
-
   }
+
+  const deckItem = props.allDecks.map((deck, index) => {
+    return (
+      <ListItem>{deck.deck_name}</ListItem>
+
+    );
+  })
 
   return (
     <div>
@@ -62,6 +68,7 @@ const Navigation = (props) => {
         <div className={classes.sideBar}>
          <Typography variant="h6">
           <List>
+            {deckItem}
             <ListItem>
               Deck1
             </ListItem>

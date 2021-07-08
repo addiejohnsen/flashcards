@@ -1,4 +1,5 @@
 import React from 'react';
+import {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CreateDeck from './CreateDeck';
 import DeckList from './DeckList';
@@ -8,7 +9,7 @@ const axios = require('axios');
 
 const useStyles = makeStyles({
   root: {
-    marginLeft: 175,
+    marginLeft: 225,
     marginTop: 25
   },
 })
@@ -16,24 +17,32 @@ const useStyles = makeStyles({
 const App = () => {
   const classes = useStyles();
 
-  // GET ALL DECKS ON LOAD
+  const [allDecks, setAllDecks] = useState([]);
 
-  const url = 'http://localhost:3000/cards';
+  // GET ALL DECKS ON LOAD
+const fetchAllDecks = () => {
+  const url = 'http://localhost:3000/decks';
   axios.get(url)
-    .then((results) => {
-      console.log('results')
-    })
-    .catch((err) => {
-      console.error('Error: ', err);
-    });
+  .then((results) => {
+    setAllDecks(results.data);
+  })
+  .catch((err) => {
+    console.error('Error: ', err);
+  });
+}
+
+useEffect(()=>{
+  fetchAllDecks();
+}, []);
+
 
   return (
     <div>
       <h1>Welcome to Карточка! Давай начнём!</h1>
-      <Navigation />
+      <Navigation allDecks={allDecks} />
       <div className={classes.root}>
         <CreateDeck />
-        <DeckList />
+        <DeckList allDecks={allDecks}/>
         <CardList />
       </div>
     </div>

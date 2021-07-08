@@ -1,7 +1,7 @@
 const client = require('./index');
 
 // get all decks from the decks table
-const getDecks = (callback) => {
+const getAllDecks = (callback) => {
   const queryString = 'SELECT * FROM decks;';
   client.query(queryString, (err, result) => {
     if (err) {
@@ -56,7 +56,7 @@ const getAllCards = (callback) => {
     if (err) {
       callback(err, null);
     } else {
-      callbak(null, err);
+      callback(null, err);
     }
   });
 };
@@ -94,7 +94,7 @@ const createCard = (card, callback) => {
 
 
 module.exports = {
-  getDecks,
+  getAllDecks,
   getCards,
   getAllCards,
   getCardsNeedPractice,
