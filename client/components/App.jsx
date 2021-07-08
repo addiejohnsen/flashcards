@@ -4,6 +4,7 @@ import CreateDeck from './CreateDeck';
 import DeckList from './DeckList';
 import CardList from './CardList';
 import Navigation from './Navigation';
+const axios = require('axios');
 
 const useStyles = makeStyles({
   root: {
@@ -15,14 +16,23 @@ const useStyles = makeStyles({
 const App = () => {
   const classes = useStyles();
 
+  const url = 'http://localhost:3000/api/get';
+  axios.get(url)
+    .then((results) => {
+      console.log('test')
+    })
+    .catch((err) => {
+      console.error('Error: ', err);
+    });
+
   return (
     <div>
       <h1>Welcome to Карточка! Давай начнём!</h1>
       <Navigation />
       <div className={classes.root}>
-      <CreateDeck />
-      <DeckList />
-      <CardList />
+        <CreateDeck />
+        <DeckList />
+        <CardList />
       </div>
     </div>
   );
