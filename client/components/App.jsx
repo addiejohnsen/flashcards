@@ -27,7 +27,7 @@ const App = () => {
     axios.get('http://localhost:3000/decks')
       .then((results) => {
         setAllDecks(results.data);
-        // setCurrentDeck(results.data[0]);
+        setCurrentDeck(results.data[0]);
       })
       .catch((err) => {
         console.error('Error: ', err);
@@ -67,7 +67,6 @@ const App = () => {
     axios.post('http://localhost:3000/cards', newCard)
       .then(() => {
         fetchCards(currentDeckId);
-        setCurrentDeck(allDecks[currentDeckId - 1]);
       })
       .catch((err) => {
         console.error('Error: ', err);
