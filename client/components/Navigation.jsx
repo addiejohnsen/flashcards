@@ -52,7 +52,7 @@ const Navigation = (props) => {
       <AppBar postion="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h3">
-            Карточки
+          🇷🇺 / 🇺🇸 Карточки
           </Typography>
         </Toolbar>
       </AppBar>
