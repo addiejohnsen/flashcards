@@ -8,10 +8,8 @@ const useStyles = makeStyles({
   },
 });
 
-
 const DeckList = (props) => {
   const classes = useStyles();
-  console.log(props);
 
   const cardNames = props.cards.map((card, index) => {
     return (

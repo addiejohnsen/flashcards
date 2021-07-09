@@ -10,7 +10,6 @@ import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex'
@@ -62,23 +61,11 @@ const Navigation = (props) => {
         variant="permanent">
         <Toolbar />
         <div className={classes.sideBar}>
-         <Typography variant="h6">
-          <List>
-            {deckItem}
-            <ListItem>
-              Deck1
-            </ListItem>
-            <ListItem>
-              Deck2
-            </ListItem>
-            <ListItem>
-              Deck3
-            </ListItem>
-            <ListItem>
-              Deck4
-            </ListItem>
-          </List>
-         </Typography>
+          <Typography variant="h6">
+            <List>
+              {deckItem}
+            </List>
+          </Typography>
         </div>
       </Drawer>
     </div>

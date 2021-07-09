@@ -47,7 +47,7 @@ const getCardsNeedPractice = (deck_id, callback) => {
       callback(null, result)
     }
   });
-}
+};
 
 // get all cards from all decks
 const getAllCards = (callback) => {
@@ -61,10 +61,10 @@ const getAllCards = (callback) => {
   });
 };
 
-// create new deck
-const createDeck = (deck_name, callback) => {
-  const queryString = 'INSERT INTO decks (deck_name, deck_practice_sessions) VALUES ($1, 0);';
-  client.query(queryString, [deck_name], (err, result) => {
+// create new deck - Need to return deck ID
+const createDeck = (deckName, callback) => {
+  const queryString = 'INSERT INTO decks (deck_name, deck_practice_sessions) VALUES ($1, 0) RETURNING id;';
+  client.query(queryString, [deckName], (err, result) => {
     if (err) {
       callback(err, null);
     } else {

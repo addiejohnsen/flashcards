@@ -8,7 +8,7 @@ const PORT = 3000;
 
 const app = express();
 // const url = 'http://localhost:3000';
-
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'dist')));
 
 // ROUTES
@@ -78,13 +78,13 @@ app.get('/practice/cards', (req, res) => {
 
 // Add a new deck to the database
 app.post('/decks', (req, res) => {
-  // get deck name from request
-
-  models.createDeck(deck_name, (err) => {
+  models.createDeck(req.body.deckName, (err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(201).send('Deck created');
+      console.log(result.rows[0].id);
+      const num = result.rows[0].id;
+      res.status(200).json(num);
     }
   });
 });
@@ -92,15 +92,7 @@ app.post('/decks', (req, res) => {
 // Add a card
 app.post('/cards', (req, res) => {
   // create new card - follow this format - get card info from request
-/*card {
-  deck_id: id,
-  front: front,
-  back: back
-  card_practice_sessions: 0
-}
-*/
-
-  models.createCard(card, (err, result) => {
+  models.createCard(req.body, (err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {
