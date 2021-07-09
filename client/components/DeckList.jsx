@@ -6,6 +6,10 @@ const useStyles = makeStyles({
   list: {
     display: 'inline',
   },
+  wrapper: {
+    bottomMargin: 5,
+    topMargin: 5,
+  },
 });
 
 const DeckList = (props) => {
@@ -20,15 +24,18 @@ const DeckList = (props) => {
   });
 
   return (
-    <React.Fragment>
+    <div>
       <Typography variant="h6">
         Let's study: {props.currentDeck.deck_name}
       </Typography>
       <Typography variant="body1">
         The decks covers:
       </Typography>
+      <div className={classes.wrapper}>
       {cardNames}
-    </React.Fragment>
+      </div>
+      <br />
+    </div>
 
   );
 };

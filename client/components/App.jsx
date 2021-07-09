@@ -82,11 +82,6 @@ const App = () => {
   }, [currentDeck.id]);
 
   useEffect(() => {
-    console.log('change');
-    console.log(allDecks);
-    const index = allDecks.length - 1;
-    console.log(allDecks.length - 1);
-    console.log(allDecks);
     // setCurrentDeck(allDecks[index]);
   }, [currentDeckId]);
 

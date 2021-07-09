@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles({
   box: {
@@ -14,6 +15,7 @@ const useStyles = makeStyles({
     marginBottom: 8,
   },
   field: {
+    marginTop: 8,
     marginRight: 8,
   },
 });
@@ -56,6 +58,7 @@ const CreateDeck = (props) => {
       <Typography variant="h5">Get started with a new deck!</Typography>
       <form>
         <TextField
+          className={classes.field}
           id="deck"
           label="Name of Deck"
           name="deck"
@@ -74,9 +77,12 @@ const CreateDeck = (props) => {
       </form>
       <br />
       <br />
-      <Typography>Click your deck on the left before adding cards!</Typography>
+      <Typography>
+        <ArrowBackIcon />
+        Click your deck on the left before adding cards!
+      </Typography>
       <TextField
-       className={classes.field}
+        className={classes.field}
         id="front"
         label="Front of Card"
         name="cardFront"
@@ -85,6 +91,7 @@ const CreateDeck = (props) => {
         variant="outlined"
       />
       <TextField
+        className={classes.field}
         id="back"
         label="Back of Card"
         name="cardBack"
