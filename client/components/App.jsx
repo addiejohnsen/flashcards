@@ -34,43 +34,53 @@ const App = () => {
       });
   };
 
-  const clickDeck = (e) => {
-    setCurrentDeck(allDecks[e.target.id]);
-    setCurrentDeckId(allDecks[e.target.id].id);
-  };
 
   const fetchCards = (deckId) => {
     axios.get(`http://localhost:3000/deckcards/${deckId}`)
-      .then((results) => {
-        console.log('card results: ', results.data);
-        setCards(results.data);
-      })
-      .catch((err) => {
-        console.error('Error: ', err);
-      });
+    .then((results) => {
+      console.log('card results: ', results.data);
+      setCards(results.data);
+    })
+    .catch((err) => {
+      console.error('Error: ', err);
+    });
   };
 
   //  Create New Deck
   const createNewDeck = (newDeckName) => {
     axios.post('http://localhost:3000/decks', { deckName: newDeckName })
-      .then((results) => {
-        setCurrentDeckId(results.data);
-        fetchAllDecks();
-      })
-      .catch((err) => {
-        console.error('Error: ', err);
-      });
+    .then((results) => {
+      setCurrentDeckId(results.data);
+      fetchAllDecks();
+    })
+    .catch((err) => {
+      console.error('Error: ', err);
+    });
   };
 
   // Create new card
   const createNewCard = (newCard) => {
     axios.post('http://localhost:3000/cards', newCard)
-      .then(() => {
-        fetchCards(currentDeckId);
-      })
-      .catch((err) => {
-        console.error('Error: ', err);
-      });
+    .then(() => {
+      fetchCards(currentDeckId);
+    })
+    .catch((err) => {
+      console.error('Error: ', err);
+    });
+  };
+
+  const clickDeck = (e) => {
+    setCurrentDeck(allDecks[e.target.id]);
+    setCurrentDeckId(allDecks[e.target.id].id);
+  };
+
+  //
+  const shuffleDeck = (e) => {
+    console.log('click');
+    const cardsCopy = cards.slice();
+    const shuffledCards = cardsCopy.sort(( a, b ) => 0.5 - Math.random());
+    console.log(shuffledCards);
+    setCards(shuffledCards);
   };
 
   useEffect(() => {
@@ -100,6 +110,7 @@ const App = () => {
           currentDeck={currentDeck}
           fetchCards={fetchCards}
           cards={cards}
+          shuffleDeck={shuffleDeck}
         />
       </div>
     </div>

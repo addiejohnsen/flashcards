@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
+  shuffle: {
+    marginTop: 15,
+  },
   list: {
     display: 'inline',
   },
   wrapper: {
-    bottomMargin: 5,
-    topMargin: 5,
+    marginBottom: 5,
+    marginTop: 5,
   },
 });
 
 const DeckList = (props) => {
   const classes = useStyles();
+  console.log(props.shuffleDeck);
+
 
   const cardNames = props.cards.map((card, index) => {
     return (
@@ -32,8 +38,11 @@ const DeckList = (props) => {
         The decks covers:
       </Typography>
       <div className={classes.wrapper}>
-      {cardNames}
+        {cardNames}
       </div>
+      <div className={classes.shuffle}>
+          <Button variant="contained" onClick={props.shuffleDeck}>Shuffle Deck</Button>
+        </div>
       <br />
     </div>
 

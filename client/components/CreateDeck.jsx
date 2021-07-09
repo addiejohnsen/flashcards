@@ -32,6 +32,7 @@ const CreateDeck = (props) => {
 
   const handleDeckClick = () => {
     props.createNewDeck(name);
+    setName('');
   };
 
   const handleCardFront = (e) => {
@@ -51,6 +52,8 @@ const CreateDeck = (props) => {
     };
     props.createNewCard(newCard);
     console.log(newCard);
+    setFront('');
+    setBack('');
   };
 
   return (

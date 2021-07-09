@@ -9,10 +9,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex'
+    display: 'flex',
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -30,10 +31,8 @@ const useStyles = makeStyles((theme) => ({
 
   content: {
     flexGrow: 1,
-    padding: 20
-  }
-
-
+    padding: 20,
+  },
 
 }));
 
@@ -58,7 +57,8 @@ const Navigation = (props) => {
         </Toolbar>
       </AppBar>
       <Drawer className={classes.nav}
-        variant="permanent">
+        variant="permanent"
+      >
         <Toolbar />
         <div className={classes.sideBar}>
           <Typography variant="h6">

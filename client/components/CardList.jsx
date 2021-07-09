@@ -12,7 +12,7 @@ const CardList = (props) => {
 
   return (
     <React.Fragment>
-      <DeckList cards={props.cards} currentDeck={props.currentDeck} />
+      <DeckList cards={props.cards} currentDeck={props.currentDeck} shuffleDeck={props.shuffleDeck}/>
       {cardCard}
     </React.Fragment>
   );
